@@ -54,35 +54,3 @@ SCORE, overall_score = evaluate(gt_mask_dir,pred_mask_dir)
 print(SCORE)
 print(overall_score)
 
-
-
-'''
-gt_mask_files=sorted(glob(gt_mask_dir))
-pred_mask_files=sorted(glob(pred_mask_dir))
-
-path_gt=gt_mask_files[0]
-path_pred=pred_mask_files[0]
-
-gt_raw = cv2.imread(path_gt, cv2.IMREAD_GRAYSCALE)
-(thresh, im_bw_gt) = cv2.threshold(gt_raw, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
-
-path_pred_raw = cv2.imread(path_pred, cv2.IMREAD_GRAYSCALE)
-(thresh, im_bw_pre) = cv2.threshold(path_pred_raw, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
-
-#cv2.imshow('gt_raw_filtered', im_bw_gt)
-#cv2.imshow('pre_raw_filtered', im_bw_pre)
-
-#cv2.waitKey()
-
-mask=im_bw_gt.flatten()/255
-prediction=im_bw_pre.flatten()/255
-
-SCORE=[]
-acc_value = accuracy_score(mask, prediction)
-f1_value = f1_score(mask, prediction, labels=[0, 1], average="binary")
-jac_value = jaccard_score(mask, prediction, labels=[0, 1], average="binary")
-recall_value = recall_score(mask, prediction, labels=[0, 1], average="binary")
-precision_value = precision_score(mask, prediction, labels=[0, 1], average="binary")
-SCORE.append([acc_value, f1_value, jac_value, recall_value, precision_value])
-print(SCORE)
-'''
