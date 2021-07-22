@@ -16,10 +16,11 @@ def evaluate(gt_mask_dir,pred_mask_dir):
         path_gt=gt_mask_files[i]
         path_pred=pred_mask_files[i]
         image_name = gt_mask_files[i].split("/")[-1]
-        gt_raw = cv2.imread(path_gt, cv2.IMREAD_GRAYSCALE)
-        (thresh_gt, im_bw_gt) = cv2.threshold(gt_raw, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
         path_pred_raw = cv2.imread(path_pred, cv2.IMREAD_GRAYSCALE)
+        gt_raw = cv2.imread(path_gt, cv2.IMREAD_GRAYSCALE)
+        gt_raw = cv2.resize (gt_raw,(path_pred_raw.shape[1],path_pred_raw.shape[0]))
         (thresh_pred, im_bw_pred) = cv2.threshold(path_pred_raw, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+        (thresh_gt, im_bw_gt) = cv2.threshold(gt_raw, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
         mask=im_bw_gt.flatten()/255
         prediction=im_bw_pred.flatten()/255
         acc_value = accuracy_score(mask, prediction)
@@ -47,10 +48,27 @@ def evaluate(gt_mask_dir,pred_mask_dir):
     return SCORE, overall_score
 
 
-gt_mask_dir="BenchStudy_Dataset/Benchmark_Outputimages/model_1/*"
-pred_mask_dir="BenchStudy_Dataset/SegmentationMask/*"
+gt_mask_dir="Datasets/Asphalt_Pavement_Images/Segmentation_Mask/*"
 
-SCORE, overall_score = evaluate(gt_mask_dir,pred_mask_dir)
-print(SCORE)
-print(overall_score)
+
+pred_mask_dir_1="Datasets/DetectionResults/Model_3/*"
+#pred_mask_dir_2=""
+#pred_mask_dir_3=""
+#pred_mask_dir_4=""
+#pred_mask_dir_5=""
+
+SCORE_1, overall_score_1 = evaluate(gt_mask_dir,pred_mask_dir_1)
+print(SCORE_1)
+print(overall_score_1)
+
+#SCORE_2, overall_score_2 = evaluate(gt_mask_dir,pred_mask_dir_2)
+#print(SCORE_2)
+#print(overall_score_2)
+#SCORE_3, overall_score_3 = evaluate(gt_mask_dir,pred_mask_dir_3)
+#print(SCORE_3)
+#print(overall_score_3)
+#SCORE_1, overall_score_4 = evaluate(gt_mask_dir,pred_mask_dir_4)
+#print(SCORE_4)
+#print(overall_score_4)
+
 
