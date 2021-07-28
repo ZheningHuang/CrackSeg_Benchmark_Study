@@ -2,20 +2,19 @@
 from glob import glob
 import numpy as np
 import cv2 
+import os
 
 
 
 # directory for source images and output locations
-croped_image_folder="/content/drive/MyDrive/BenchStudy_Dataset/row_cropped/*"
-path_to_save="/"
-
-
-
+croped_image_folder=".\Model4\concrete_vd\*"
+path_to_save=".\Model4_merged"
 files_cropped=sorted(glob(croped_image_folder))
 num_images=int(len(files_cropped)/24)
 for i in range(num_images):
-  print(i)
-  nam_img=files_cropped[i*24].split("/")[-1].split("_")[0]
+  print (i)
+  nam_img=files_cropped[i*24].split("\\")[-1]
+  print (nam_img)
   crop_1_1=cv2.imread(files_cropped[i*24])
   crop_1_2=cv2.imread(files_cropped[i*24+1])
   crop_1_3=cv2.imread(files_cropped[i*24+2])
@@ -46,5 +45,6 @@ for i in range(num_images):
   h_img_3 = cv2.hconcat([crop_3_1,crop_3_2,crop_3_3,crop_3_4,crop_3_5,crop_3_6])
   h_img_4 = cv2.hconcat([crop_4_1,crop_4_2,crop_4_3,crop_4_4,crop_4_5,crop_4_6])
   combined_image = cv2.vconcat([h_img_1,h_img_2,h_img_3,h_img_4])
-  print(combined_image)
   cv2.imwrite(os.path.join(path_to_save,nam_img+"_combined.jpg"),combined_image)
+
+print ("All done")
