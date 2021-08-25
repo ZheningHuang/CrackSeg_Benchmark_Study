@@ -1,1 +1,3 @@
 # CrackSeg_Benchmark_Study
+
+A benchmark study of four different types of crack detection models was conducted using consistent evaluation matrices to identify the remaining challenges and potential direction for future development. Also, to solve the issue that public crack datasets are not representative of real-project images, a new crack dataset that is composed of images captured by Highways England surveying vehicles with various viewpoints is proposed. 

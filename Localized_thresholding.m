@@ -1,5 +1,5 @@
 % Convert and store image in grayscale
-crack = imread('.\HEA12D_dataset\Concrete_pavement_VD\Raw_images\CPVD_01.jpg')
+crack = imread('.\HEA12D_dataset\Asphalt_pavement_FD\Raw_images\APFD_08.jpg')
 
 I9 = .2989*crack(:,:,1)+.5870*crack(:,:,2)+.1140*crack(:,:,3);
 % Identifying RGB components, square sizes
